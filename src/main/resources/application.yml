@@ -1,4 +1,3 @@
-#配置视图解析器
 spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/hospital_system?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&useSSL=false&serverTimezone=Asia/Shanghai
@@ -14,10 +13,10 @@ server:
   servlet:
     jsp:
       init-parameters:
-        development: true   #用于实现JSP页面热部署
+        development: true
 
 mybatis:
-  mapper-locations: classpath:com/xmu/hospital/mapper/xml/*.xml
-  type-aliases-package: com.xmu.hospital.entity
+  mapper-locations: classpath:com/xmu/mapper/xml/*.xml
+  type-aliases-package: com.xmu.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
