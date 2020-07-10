@@ -1,53 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
-	
-  <!-- 针对8.X版本的mysql要用下面这套配置，其中driver要用有cj的，url要用时区，还有nullCatalogMeansCurrent用来防止得不到主键
-  <classPathEntry location="D:\\java\\MavenRepository\\repo\\mysql\\mysql-connector-java\\8.0.16\\mysql-connector-java-8.0.16.jar" />
-    <jdbcConnection 
-	    driverClass="com.mysql.cj.jdbc.Driver" 
-	    connectionURL="jdbc:mysql://localhost:3306/boot?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC&amp;nullCatalogMeansCurrent=true" 
-	    userId="root" 
-	    password="123456" />
-   -->
+
+    <!-- 针对8.X版本的mysql要用下面这套配置，其中driver要用有cj的，url要用时区，还有nullCatalogMeansCurrent用来防止得不到主键
+    <classPathEntry location="D:\\java\\MavenRepository\\repo\\mysql\\mysql-connector-java\\8.0.16\\mysql-connector-java-8.0.16.jar" />
+      <jdbcConnection
+          driverClass="com.mysql.cj.jdbc.Driver"
+          connectionURL="jdbc:mysql://localhost:3306/boot?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC&amp;nullCatalogMeansCurrent=true"
+          userId="root"
+          password="123456" />
+     -->
     <classPathEntry location="F:\\IDMDownload\\mysql-connector-java-5.1.48.jar"/>
-  <context id="hospital" >
-    <jdbcConnection 
-	    driverClass="com.mysql.jdbc.Driver" 
-	    connectionURL="jdbc:mysql://localhost:3306/hospital_system"
-	    userId="root" 
-	    password="19980529" />
-    <javaModelGenerator targetPackage="com.xmu.hospital.entity" targetProject="src/main/java" />
-    <sqlMapGenerator targetPackage="com.xmu.hospital.mapper.xml" targetProject="src/main/java" />
-    <javaClientGenerator targetPackage="com.xmu.hospital.mapper" targetProject="src/main/java" type="XMLMAPPER" />
-    <!-- type有三个值：ANNOTATEDMAPPER、MIXEDMAPPER、XMLMAPPER -->
-    <!--  数据库　表名　生成名domainObjectName="" -->
-    <!-- <table schema="shop" tableName="goods">
-    	<generatedKey column="gid" sqlStatement="mysql" identity="true" />  
-    </table>
-    <table schema="shop" tableName="customer">
-    	<generatedKey column="cid" sqlStatement="mysql" identity="true" />  
-    </table>
-    <table schema="shop" tableName="admin">
-    	<generatedKey column="aid" sqlStatement="mysql" identity="true" />  
-    </table> -->
-    <table schema="hospital_system" tableName="admin">
-    	<generatedKey column="a_id" sqlStatement="mysql" identity="true" />
-    </table>
-    <table schema="hospital_system" tableName="doctor">
-    	<generatedKey column="d_id" sqlStatement="mysql" identity="true" />
-    </table>
-    <table schema="hospital_system" tableName="hospital">
-    	<generatedKey column="h_id" sqlStatement="mysql" identity="true" />
-    </table>
-    <table schema="hospital_system" tableName="orders">
-    	<generatedKey column="o_id" sqlStatement="mysql" identity="true" />
-    </table>
-    <table schema="hospital_system" tableName="room">
-    	<generatedKey column="r_id" sqlStatement="mysql" identity="true" />
-    </table>
-    <table schema="hospital_system" tableName="user">
-    	<generatedKey column="u_id" sqlStatement="mysql" identity="true" />
-    </table>
-  </context>
+    <context id="hospital" >
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/hospital_system"
+                userId="root"
+                password="19980529" />
+        <javaModelGenerator targetPackage="com.xmu.entity" targetProject="./src/main/java" />
+        <sqlMapGenerator targetPackage="com.xmu.mapper.xml" targetProject="./src/main/java" />
+        <javaClientGenerator targetPackage="com.xmu.mapper" targetProject="./src/main/java" type="XMLMAPPER" />
+        <!-- type有三个值：ANNOTATEDMAPPER、MIXEDMAPPER、XMLMAPPER -->
+        <!--  数据库　表名　生成名domainObjectName="" -->
+        <!-- <table schema="shop" tableName="goods">
+            <generatedKey column="gid" sqlStatement="mysql" identity="true" />
+        </table>
+        <table schema="shop" tableName="customer">
+            <generatedKey column="cid" sqlStatement="mysql" identity="true" />
+        </table>
+        <table schema="shop" tableName="admin">
+            <generatedKey column="aid" sqlStatement="mysql" identity="true" />
+        </table> -->
+        <table tableName="admin" domainObjectName="Admin"></table>
+        <table tableName="doctor" domainObjectName="Doctor"></table>
+        <table tableName="hospital" domainObjectName="Hospital"></table>
+        <table tableName="orders" domainObjectName="Orders"></table>
+        <table tableName="room" domainObjectName="Room"></table>
+        <table tableName="user" domainObjectName="User"></table>
+    </context>
 </generatorConfiguration>
