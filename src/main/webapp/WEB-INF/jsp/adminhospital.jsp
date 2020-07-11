@@ -13,15 +13,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta content="" name="description" />
 <meta content="webthemez" name="author" />
-<title>商品管理</title>
+<title>医院管理</title>
 <jsp:include page="/part/manager.css.jsp"></jsp:include>
 </head>
 <body>
 	<div id="wrapper">
 		<!--头部：页面标题栏-->
-		<jsp:include page="/part/manager.header.jsp"></jsp:include>
+		<jsp:include page="/part/admin.header.jsp"></jsp:include>
 		<!--导航栏：页面菜单栏-->
-		<jsp:include page="/part/manager.menu.jsp"></jsp:include>
+		<jsp:include page="/part/admin.menu.jsp"></jsp:include>
 		<!--表格-->
 		<div id="page-wrapper">
 			<div id="page-inner">
@@ -32,14 +32,14 @@
 						<div class="panel panel-default">
 							<!-- 面板头放：页面标题，刷新按钮，添加按钮 -->
 							<div class="panel-heading">
-								<font size="4">商品管理</font> 
+								<font size="4">医院管理</font>
 								<a href="<%=basePath%>showgoods.do"> 
 									<span class="glyphicon glyphicon-repeat"></span>
 								</a>
 								<span style="float: right">
-									<button type="button" class="btn btn-default btn-sm"
+									<button type="button" class="btn btn-success btn-sm"
 										data-toggle="modal" data-target="#myModal" onclick="editInfo(this,0)">
-										<span class="glyphicon glyphicon-plane"></span> 上架商品
+										<span class="fa fa-star"></span> 医院注册
 									</button>
 								</span>
 							</div>
@@ -50,28 +50,24 @@
 										id="dataTables-example">
 										<thead>
 											<tr>
-												<th>商品编号</th>
-												<th>商品名称</th>
-												<th>商品类型</th>
-												<th>商品单价</th>
-												<th>上架日期</th>
+												<th>医院编号</th>
+												<th>医院账号</th>
+												<th>医院名称</th>
 												<th>修改</th>
 												<th>删除</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:if test="${not empty list }">
-												<c:forEach var="goods" items="${list }">
+												<c:forEach var="hospital" items="${list }">
 													<tr>
-														<td>${goods.gid }</td>
-														<td>${goods.gname }</td>
-														<td>${goods.type }</td>
-														<td>${goods.price }</td>
-														<td><fmt:formatDate value="${goods.date }" pattern="yyyy-MM-dd"/></td>
+														<td>${hospital.hId }</td>
+														<td>${hospital.hAccount }</td>
+														<td>${hospital.hName }</td>
 														<td><a id="edit" href="#" data-toggle="modal" data-target="#myModal" onclick="editInfo(this,1)">
 															<span class="glyphicon glyphicon-edit"></span>
 														</a></td>
-														<td><a href="javascript:doDelete(${goods.gid })" style="color:red">
+														<td><a href="javascript:doDelete(${hospital.hId })" style="color:red">
 															<span class="glyphicon glyphicon-remove"></span>
 														</a></td>
 													</tr>
@@ -94,40 +90,28 @@
 											aria-hidden="true">×</button>
 										<!-- 表单嵌套表格：规范表单格式 -->
 										<form action="" method="post" role="form" id="editForm">
-											<input type="hidden" id="gid" name="gid" class="form-control">
+											<input type="hidden" id="hId" name="hId" class="form-control">
 											<div class="form-group">
 												<table class="table" style="font: '黑体';">
 													<thead>
 														<tr>
-															<th>商品信息：</th>
+															<th>医院信息：</th>
 															<th></th>
 														</tr>
 													</thead>
 													<tbody>
 														<tr>
-															<td><b>商品名称:</b></td>
-															<td><input type="text" id="gname" name="gname" class="form-control"/></td>
+															<td><b>医院名称:</b></td>
+															<td><input type="text" id="hName" name="hName" class="form-control"/></td>
 														</tr>
 														<tr>
-															<td><b>商品类型：</b></td>
-															<td><select id="type" name="type" class="form-control">
-																<option>服装</option>
-																<option>家电</option>
-																<option>食品</option>
-																<option>日用品</option>
-																<option>数码产品</option>
-																<option>虚拟产品</option>
-															</select>
-															</td>
-														</tr>
-														<tr>
-															<td><b>商品单价：</b></td>
-															<td><input type="number" id="price" name="price" step="0.01" 
+															<td><b>医院账号:</b></td>
+															<td><input type="text" id="hAccount" name="hAccount" step="0.01"
 																maxlength="10" class="form-control"/></td>
 														</tr>
 														<tr>
-															<td><b>上架日期:</b></td>
-															<td><input type="date" id="date" name="date" class="form-control"/></td>
+															<td><b>医院密码:</b></td>
+															<td><input type="password" id="hPassword" name="hPassword" class="form-control"/></td>
 														</tr>
 													</tbody>
 												</table>
@@ -155,22 +139,20 @@
 		if(flag==0){
 			//$(".form-control").val("");
 			$("#editForm").get(0).reset();
-			$("#editForm").attr("action","<%=basePath%>addgoods.do");
+			$("#editForm").attr("action","<%=basePath%>addhospital.ad");
 		}else{
-			$("#editForm").attr("action","<%=basePath%>modifygoods.do");
-			var goodsInfo = obj.parentNode.parentNode.childNodes;
-			console.log(goodsInfo);
-			$("#gid").val(goodsInfo[1].innerHTML);
-			$("#gname").val(goodsInfo[3].innerHTML);
-			$("#type").val(goodsInfo[5].innerHTML);
-			$("#price").val(goodsInfo[7].innerHTML);
-			$("#date").val(goodsInfo[9].innerHTML);
+			$("#editForm").attr("action","<%=basePath%>updatehospital.ad");
+			var hospitalInfo = obj.parentNode.parentNode.childNodes;
+			console.log(hospitalInfo);
+			$("#hId").val(hospitalInfo[1].innerHTML);
+			$("#hAccount").val(hospitalInfo[3].innerHTML);
+			$("#hName").val(hospitalInfo[5].innerHTML);
 		}
 	}
 	
-	function doDelete(gid){
-		if(confirm("您确定要删除编号为："+gid+"的商品吗？")){
-			location.href="<%=basePath%>removegoods.do?gid="+gid;
+	function doDelete(hId){
+		if(confirm("您确定要删除编号为："+hId+"的医院吗？")){
+			location.href="<%=basePath%>deletehospital.ad?hId="+hId;
 		}
 	}
 </script>

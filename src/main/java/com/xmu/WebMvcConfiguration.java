@@ -1,5 +1,6 @@
 package com.xmu;
 
+import com.xmu.interceptor.AdminSessionInterceptor;
 import com.xmu.interceptor.SessionInterceptor;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.core.Ordered;
@@ -22,6 +23,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**.do");
+		registry.addInterceptor(new AdminSessionInterceptor()).addPathPatterns("/**.ad");
 	}
 	
 	
