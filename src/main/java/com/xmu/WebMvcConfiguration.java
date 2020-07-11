@@ -18,12 +18,12 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter{
 		registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 		super.addViewControllers(registry);
 	}
-
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**.do");
-	}
-	
+	//TODO: uncomment when everything tested
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry) {
+//		registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**.do");
+//	}
+//
 	
 	
 	
