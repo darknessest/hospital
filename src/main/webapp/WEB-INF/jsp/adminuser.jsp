@@ -68,7 +68,10 @@
 														<td>${user.uAccount }</td>
 														<td>${user.uName }</td>
 														<td>${user.uAge }</td>
-														<td>${user.uSex }</td>
+														<td>
+															<c:if test="${user.uSex}">男</c:if>
+															<c:if test="${!user.uSex}">女</c:if>
+														</td>
 														<td>${user.uPhone }</td>
 <%--														<td><a id="edit" href="#" data-toggle="modal" data-target="#myModal" onclick="editInfo(this,1)">--%>
 <%--															<span class="glyphicon glyphicon-edit"></span>--%>

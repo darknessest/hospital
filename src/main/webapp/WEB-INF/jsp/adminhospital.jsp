@@ -33,7 +33,7 @@
 							<!-- 面板头放：页面标题，刷新按钮，添加按钮 -->
 							<div class="panel-heading">
 								<font size="4">医院管理</font>
-								<a href="<%=basePath%>showgoods.do"> 
+								<a href="<%=basePath%>showhospital.ad">
 									<span class="glyphicon glyphicon-repeat"></span>
 								</a>
 								<span style="float: right">

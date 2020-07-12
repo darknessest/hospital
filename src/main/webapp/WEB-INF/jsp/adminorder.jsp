@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -32,7 +34,7 @@
 						<!-- 面板头放：页面标题，刷新按钮，添加按钮 -->
 						<div class="panel-heading">
 							<font size="4">订单管理</font>
-							<a href="<%=basePath%>showorder.do">
+							<a href="<%=basePath%>showorder.ad">
 								<span class="glyphicon glyphicon-repeat"></span>
 							</a>
 						</div>
@@ -51,23 +53,31 @@
 										<th>订单状态</th>
 										<th>预约日期</th>
 										<th>价格</th>
+										<th>修改</th>
 									</tr>
 									</thead>
 									<tbody>
 									<c:if test="${not empty list }">
 										<c:forEach var="order" items="${list }">
 											<tr>
-												<td>${order.oId }</td>
-												<td>${order.dName }</td>
-												<td>${order.hName }</td>
-												<td>${order.uName }</td>
-												<td>${order.oRaddress }</td>
-												<td>${order.oStatus }</td>
-												<td>${order.oDate }</td>
-												<td>${order.oPrice }</td>
-<%--												<td><a id="dl" href="#" data-toggle="modal" data-target="#myModal" onclick="showDetail(${order.oid})">--%>
-<%--													<span class="glyphicon glyphicon-list-alt"></span>--%>
-<%--												</a></td>--%>
+												<td>${order.o_id }</td>
+												<td>${order.d_name }</td>
+												<td>${order.h_name }</td>
+												<td>${order.u_name }</td>
+												<td>${order.o_raddress }</td>
+												<td>
+													<c:if test="${order.o_status==1 }">未支付</c:if>
+													<c:if test="${order.o_status==2 }">已支付</c:if>
+													<c:if test="${order.o_status==3 }">已完成</c:if>
+													<c:if test="${order.o_status!=1&&order.o_status!=2&&order.o_status!=3 }">
+														<span style="color: red">异常</span>
+													</c:if>
+												</td>
+												<td><fmt:formatDate value="${order.o_date }" pattern="yyyy-MM-dd"/></td>
+												<td>${order.o_price }</td>
+												<td><a id="edit" href="#" data-toggle="modal" data-target="#myModal" onclick="editInfo(this)">
+													<span class="glyphicon glyphicon-edit"></span>
+												</a></td>
 <%--												<td><a href="javascript:doDelete(${order.oid })" style="color:red">--%>
 <%--													<span class="glyphicon glyphicon-remove"></span>--%>
 <%--												</a></td>--%>
@@ -89,25 +99,40 @@
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal"
 											aria-hidden="true">×</button>
-									<h4 class="modal-title">订单详情：</h4>
-									<table class="table" style="font: '黑体';">
-										<thead>
-										<tr>
-											<th>详单编号</th>
-											<th>客户名称</th>
-											<th>商品名称</th>
-											<th>购买数量</th>
-											<th>商品单价</th>
-											<th>单笔总价</th>
-										</tr>
-										</thead>
-										<tbody id="detail">
-										<!-- 用Ajax获取的数据，来填充表格内容 -->
-										</tbody>
-									</table>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-									</div>
+									<!-- 表单嵌套表格：规范表单格式 -->
+									<form action="" method="post" role="form" id="editForm">
+										<input type="hidden" id="oId" name="oId" class="form-control">
+										<div class="form-group">
+											<table class="table" style="font: '黑体';">
+												<thead>
+												<tr>
+													<th>订单信息：</th>
+													<th></th>
+												</tr>
+												</thead>
+												<tbody>
+												<tr>
+													<td><b>订单状态：</b></td>
+													<td><select id="oStatus" name="oStatus" class="form-control">
+														<option>未支付</option>
+														<option>已支付</option>
+														<option>已完成</option>
+													</select>
+													</td>
+												</tr>
+												<tr>
+													<td><b>价格：</b></td>
+													<td><input type="number" id="oPrice" name="oPrice" step="0.01"
+															   maxlength="10" class="form-control"/></td>
+												</tr>
+												</tbody>
+											</table>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+												<input type="submit" value="提交" class="btn btn-primary">
+											</div>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -122,20 +147,19 @@
 <jsp:include page="/part/manager.js.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
-	function showDetail(oid){
-		$.get("<%=basePath%>showdetail.do?oid="+oid,function(data){
-			$("#detail").empty();
-			//console.log(data);
-			$.each(data, function() {
-				$("#detail").append("<tr><td>"+this.did+"</td><td>"+this.cname+"</td><td>"+this.gname+"</td><td>"+this.count+"</td><td>"+this.price+"</td><td>"+this.amount+"</td><tr>")
-			})
-		});
+	function editInfo(obj){
+		$("#editForm").attr("action","<%=basePath%>updateorder.ad");
+		var orderInfo = obj.parentNode.parentNode.childNodes;
+		console.log(orderInfo);
+		$("#oId").val(orderInfo[1].innerHTML);
+		$("#oStatus").val(orderInfo[11].innerText);
+		$("#oPrice").val(orderInfo[15].innerHTML);
 	}
 
-	function doDelete(oid){
-		if(confirm("您确定要删除编号为："+oid+"的订单吗？")){
-			location.href="<%=basePath%>removeorder.do?oid="+oid;
-		}
-	}
+	<%--function doDelete(oid){--%>
+	<%--	if(confirm("您确定要删除编号为："+oid+"的订单吗？")){--%>
+	<%--		location.href="<%=basePath%>removeorder.do?oid="+oid;--%>
+	<%--	}--%>
+	<%--}--%>
 </script>
 </html>
