@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>商城后台管理系统</title>
+    <title>医院预约管理系统</title>
     
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,11 +39,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  <div id="login-page">
 	  	<div class="container">
 		      <form class="form-login" action="login" method="post">
-		        <h2 class="form-login-heading">商城后台管理系统</h2>
+		        <h2 class="form-login-heading">医院预约管理系统</h2>
 		        <div class="login-wrap"><!-- required 必填， autofocus 光标锁定-->
-		            <input type="text" class="form-control" placeholder="请输入管理员名" name="aname" required autofocus>
+		            <input type="text" class="form-control" placeholder="请输入用户名" name="uname" required autofocus>
 		            <br>
-		            <input type="password" class="form-control" placeholder="请输入管理员密码" name="password" required>
+		            <input type="password" class="form-control" placeholder="请输入用户密码" name="password" required>
 		            <br>
 		            <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i>登录</button>
 		            <hr>
