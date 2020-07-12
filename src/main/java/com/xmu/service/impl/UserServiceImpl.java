@@ -46,9 +46,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUnameAndPassword(String uname, String password) {
+    public User findByUaccountAndUpassword(String uaccount, String upassword) {
         UserExample ae = new UserExample();
-        ae.createCriteria().andUNameEqualTo(uname).andUPasswordEqualTo(password);
+        ae.createCriteria().andUAccountEqualTo(uaccount).andUPasswordEqualTo(upassword);
         List<User> users = userMapper.selectByExample(ae);
         if(users.size()!=1){
             return null;

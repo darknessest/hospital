@@ -15,8 +15,8 @@ public class UserLoginController {
     private UserService userService;
 
     @RequestMapping("login")
-    public String doLogin(String uname, String password, HttpServletRequest request){
-        User user = userService.findByUnameAndPassword(uname, password);
+    public String doLogin(String uaccount, String upassword, HttpServletRequest request){
+        User user = userService.findByUaccountAndUpassword(uaccount, upassword);
         if(user==null){
             request.setAttribute("msg", "用户名或密码有误！请重新输入");
             return "../../login";
@@ -24,6 +24,7 @@ public class UserLoginController {
             request.getSession().setAttribute("admin", user);
             //跳转到主页面暂时不确定
             return "forward:showgoods.do";
+
         }
     }
 
@@ -33,6 +34,27 @@ public class UserLoginController {
         request.getSession().invalidate();
         return "../../login";
     }
+
+    @RequestMapping("toreg")
+    public String toReg(HttpServletRequest request){
+        return "register";
+    }
+
+    @RequestMapping("tologin")
+    public String toLogin(HttpServletRequest request){
+        return "../../login";
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -38,24 +38,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
 	  <div id="login-page">
 	  	<div class="container">
+
 		      <form class="form-login" action="login" method="post">
-		        <h2 class="form-login-heading">医院预约管理系统|用户登陆</h2>
+		        <h2 class="form-login-heading">医院预约管理系统|用户注册</h2>
 		        <div class="login-wrap"><!-- required 必填， autofocus 光标锁定-->
 		            <input type="text" class="form-control" placeholder="请输入用户名" name="uaccount" required autofocus>
 		            <br>
 		            <input type="password" class="form-control" placeholder="请输入用户密码" name="upassword" required>
 		            <br>
-		            <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i>登录</button>
+                    <input type="text" class="form-control" placeholder="请输入真实姓名" name="uname" required>
+                    <br>
+                    <input type="text" class="form-control" placeholder="请输入年龄" name="uage" required>
+                    <br>
+                    <input type="text" class="form-control" placeholder="请输入性别" name="usex" required>
+                    <br>
+                    <input type="phone" class="form-control" placeholder="请输入联系电话" name="uphone" required>
+                    <br>
+		            <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i>注册</button>
 		            <hr>
+
 		        </div>
 		      </form>
-            <form class="form-login" action="toreg">
-                <button  class="btn btn-theme btn-block">没有账号，去注册</button>
+            <form class="form-login" action="tologin">
+                <button  class="btn btn-theme btn-block">已有账号，去登陆</button>
             </form>
 
 
-        </div>
 
+        </div>
 	  </div>
 
     <!-- js placed at the end of the document so the pages load faster -->
