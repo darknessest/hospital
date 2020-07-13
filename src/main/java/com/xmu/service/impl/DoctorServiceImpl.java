@@ -1,6 +1,7 @@
 package com.xmu.service.impl;
 
 import com.xmu.entity.Doctor;
+import com.xmu.entity.DoctorExample;
 import com.xmu.mapper.DoctorMapper;
 import com.xmu.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +26,24 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public boolean save(Doctor doctor) {
-        int i = doctorMapper.insertSelective(doctor);
-        return i==1?true:false;
+    public void save(Doctor doctor) {
+        doctorMapper.insertSelective(doctor);
     }
 
     @Override
-    public boolean update(Doctor doctor) {
-        int i = doctorMapper.updateByPrimaryKeySelective(doctor);
-        return i==1?true:false;
+    public void update(Doctor doctor) {
+        doctorMapper.updateByPrimaryKeySelective(doctor);
     }
 
     @Override
-    public boolean delete(Long doctorId) {
-        int i = doctorMapper.deleteByPrimaryKey(doctorId);
-        return i==1?true:false;
+    public void delete(Long doctorId) {
+        doctorMapper.deleteByPrimaryKey(doctorId);
+    }
+
+    @Override
+    public List<Doctor> findByHospitalId(Long hId) {
+        DoctorExample example = new DoctorExample();
+        example.createCriteria().andDHidEqualTo(hId);
+        return doctorMapper.selectByExample(example);
     }
 }

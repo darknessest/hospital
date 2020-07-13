@@ -10,7 +10,8 @@ import java.util.List;
 public interface DoctorService {
     public List<Doctor> findAll();
     public Doctor findByDoctorId(Long doctorId);
-    public boolean save(Doctor doctor);
-    public boolean update(Doctor doctor);
-    public boolean delete(Long doctorId);
+    public void save(Doctor doctor);
+    public void update(Doctor doctor);
+    public void delete(Long doctorId);
+    public List<Doctor> findByHospitalId(Long hId);
 }

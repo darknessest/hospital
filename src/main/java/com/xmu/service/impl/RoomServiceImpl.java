@@ -1,6 +1,7 @@
 package com.xmu.service.impl;
 
 import com.xmu.entity.Room;
+import com.xmu.entity.RoomExample;
 import com.xmu.mapper.RoomMapper;
 import com.xmu.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +26,24 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public boolean save(Room room) {
-        int i = roomMapper.insertSelective(room);
-        return i==1?true:false;
+    public void save(Room room) {
+        roomMapper.insertSelective(room);
     }
 
     @Override
-    public boolean update(Room room) {
-        int i = roomMapper.updateByPrimaryKeySelective(room);
-        return i == 1 ? true : false;
+    public void update(Room room) {
+        roomMapper.updateByPrimaryKeySelective(room);
     }
 
     @Override
-    public boolean delete(Long roomId) {
-        int i = roomMapper.deleteByPrimaryKey(roomId);
-        return i == 1 ? true : false;
+    public void delete(Long roomId) {
+        roomMapper.deleteByPrimaryKey(roomId);
+    }
+
+    @Override
+    public List<Room> findByHospitalId(Long hId) {
+        RoomExample example = new RoomExample();
+        example.createCriteria().andRHidEqualTo(hId);
+        return roomMapper.selectByExample(example);
     }
 }

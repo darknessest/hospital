@@ -10,7 +10,8 @@ import java.util.List;
 public interface RoomService {
     public List<Room> findAll();
     public Room findByRoomId(Long roomId);
-    public boolean save(Room room);
-    public boolean update(Room room);
-    public boolean delete(Long roomId);
+    public void save(Room room);
+    public void update(Room room);
+    public void delete(Long roomId);
+    public List<Room> findByHospitalId(Long hId);
 }
