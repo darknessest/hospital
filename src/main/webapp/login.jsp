@@ -37,22 +37,23 @@
 
 <body>
 <div id="login-page">
-    <div class="container">
-        <form class="form-login" action="login" method="post">
-            <h2 class="form-login-heading">医院预约管理系统|用户登陆</h2>
-            <div class="login-wrap"><!-- required 必填， autofocus 光标锁定-->
-                <input type="text" class="form-control" placeholder="请输入用户名" name="uaccount" required autofocus>
-                <br>
-                <input type="password" class="form-control" placeholder="请输入用户密码" name="upassword" required>
-                <br>
-                <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i>登录</button>
-                <hr>
-            </div>
-        </form>
-        <form class="form-login" action="toreg">
-            <button  class="btn btn-theme btn-block">没有账号，去注册</button>
-        </form>
+    <br>
 
+    <div class="container">
+        <form  action="toreg">
+            <button  class="btn-theme" >已有账号，去登陆</button>
+        </form>
+            <form  class="form-login" action="login" method="post">
+                <h2 class="form-login-heading">医院预约管理系统|用户登陆</h2>
+                <div class="login-wrap"><!-- required 必填， autofocus 光标锁定-->
+                    <input type="text" class="form-control" placeholder="请输入用户名" name="uaccount" required autofocus>
+                    <br>
+                    <input type="password" class="form-control" placeholder="请输入用户密码" name="upassword" required>
+                    <br>
+                    <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i>登录</button>
+                    <hr>
+                </div>
+            </form>
 
     </div>
 

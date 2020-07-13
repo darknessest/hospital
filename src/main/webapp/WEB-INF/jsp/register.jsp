@@ -37,7 +37,14 @@
 
 <body>
 <div id="login-page">
+
     <div class="container">
+        <br>
+
+        <form  action="tologin">
+            <button  class="btn-theme" >已有账号，去登陆</button>
+        </form>
+
 
         <form class="form-login" id="reg" action="register" method="post">
             <h2 class="form-login-heading">医院预约管理系统|用户注册</h2>
@@ -56,16 +63,17 @@
                 <br>
                 <input datatype="Phone" class="form-control" name="uphone"  msg="手机号码不正确" placeholder="请输入联系电话" style="" required >
                 <br>
-                <input class="form-control" onclick="Validator.Validate(document.getElementById('reg'),3)" value="检验信息" type="button">
+                <input class="btn btn-theme btn-block" onclick="Validator.Validate(document.getElementById('reg'),3)" value="检验信息" type="button">
                 <br>
                 <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i>注册</button>
                 <hr>
 
+
             </div>
+
         </form>
-        <form class="form-login" action="tologin">
-            <button  class="btn btn-theme btn-block">已有账号，去登陆</button>
-        </form>
+
+
 
 
 
