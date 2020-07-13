@@ -1,6 +1,7 @@
 package com.xmu.service.impl;
 
 import com.xmu.entity.User;
+import com.xmu.entity.UserUpdate;
 import com.xmu.mapper.UserMapper;
 import com.xmu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
-    
+
 
     @Override
     public List<User> findAll() {
@@ -32,6 +33,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean update(User user) {
+        int i = userMapper.updateByPrimaryKeySelective(user);
+        return i == 1;
+    }
+
+    @Override
+    public boolean update(UserUpdate userUpdate) {
+        User user = userMapper.selectByPrimaryKey(userUpdate.getuId());
+        user.setuPhone(userUpdate.getuPhone());
+        user.setuPassword(userUpdate.getuPassword());
+
         int i = userMapper.updateByPrimaryKeySelective(user);
         return i == 1;
     }

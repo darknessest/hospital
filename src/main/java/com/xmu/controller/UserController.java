@@ -1,6 +1,7 @@
 package com.xmu.controller;
 
 import com.xmu.entity.User;
+import com.xmu.entity.UserUpdate;
 import com.xmu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,26 +38,11 @@ public class UserController {
         return "user";
     }
 
-
-    @RequestMapping(value = "/update-user", method = RequestMethod.GET)
-    public String showUpdateUserPage(@RequestParam long id, ModelMap model) {
-        User user = userService.findByUserId(id);
-        model.put("user", user);
-        return "update-user";
-    }
-
-    @RequestMapping(value = "/update-user", method = RequestMethod.POST)
-    public String editUser(ModelMap model, User user, BindingResult result) {
-
-        if (result.hasErrors()) {
-            return "redirect:/user";
-        }
-
-//        user.setUserName(getLoggedInUserName(model));
-        userService.update(user);
+    @RequestMapping("/edit-user")
+    public String editUser(UserUpdate updateUser) {
+        userService.update(updateUser);
         return "redirect:/user";
     }
-
 
 
 //    @RequestMapping(value = "/auth", method = RequestMethod.POST)
