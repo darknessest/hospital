@@ -24,11 +24,10 @@ public class UserLoginController {
         User user = userService.findByUaccountAndUpassword(uaccount, upassword);
         if(user==null){
             request.setAttribute("msg", "用户名或密码有误！请重新输入");
-            return "../../login";
+            return "../../userlogin";
         }else{
             request.getSession().setAttribute("admin", user);
-            //跳转到主页面暂时不确定
-            return "forward:showhospital.do";
+            return "forward:showorder.do";
 
         }
     }
@@ -37,7 +36,7 @@ public class UserLoginController {
     public String logout(HttpServletRequest request){
         request.setAttribute("msg", "您已安全退出系统！");
         request.getSession().invalidate();
-        return "../../login";
+        return "../../userlogin";
     }
 
     @RequestMapping("toreg")
@@ -47,7 +46,7 @@ public class UserLoginController {
 
     @RequestMapping("tologin")
     public String toLogin(HttpServletRequest request){
-        return "../../login";
+        return "../../userlogin";
     }
 
     @RequestMapping("register")
@@ -68,7 +67,7 @@ public class UserLoginController {
             return "register";
         }else{
             request.setAttribute("msg", "注册成功");
-            return "../../login";
+            return "../../userlogin";
         }
     }
 

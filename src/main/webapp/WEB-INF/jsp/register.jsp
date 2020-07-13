@@ -49,9 +49,9 @@
         <form class="form-login" id="reg" action="register" method="post">
             <h2 class="form-login-heading">医院预约管理系统|用户注册</h2>
             <div class="login-wrap"><!-- required 必填， autofocus 光标锁定-->
-                <input class="form-control" placeholder="请输入用户名（十二个字符以内）" name="uaccount" msg="用户名不合规范" style="" required autofocus>
+                <input type="text" class="form-control" placeholder="请输入用户名" name="uaccount" msg="用户名不合规范" style="" required autofocus>
                 <br>
-                <input datatype="SafeString" type="password"  class="form-control" placeholder="请输入用户密码（十八个字符以内）" name="upassword"  msg="密码不符合安全规则" style="" required>
+                <input datatype="SafeString" type="password"  class="form-control" placeholder="请输入用户密码" name="upassword"  msg="密码不符合安全规则" style="" required>
                 <br>
 <%--                <input  datatype="Repeat"  type="password"  class="form-control" placeholder="请确认密码"  to="Password" msg="两次输入的密码不一致"required>--%>
 <%--                <br>--%>
@@ -67,7 +67,6 @@
                 <br>
                 <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i>注册</button>
                 <hr>
-
 
             </div>
 
