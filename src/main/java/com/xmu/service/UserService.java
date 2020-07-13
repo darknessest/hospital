@@ -18,4 +18,6 @@ public interface UserService {
     public boolean delete(long userId);
 
     User findByUaccountAndUpassword(String uaccount,String upassword);
+
+    public boolean findByUAccount(String uaccount);
 }

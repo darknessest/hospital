@@ -57,6 +57,19 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public boolean findByUAccount(String uaccount){
+        UserExample ae = new UserExample();
+        ae.createCriteria().andUAccountEqualTo(uaccount);
+        List<User> users = userMapper.selectByExample(ae);
+        if(users.size()!=1){
+            return false;//没有
+        }else{
+            return true;//有
+        }
+
+    }
+
 
 
 }

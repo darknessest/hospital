@@ -4,6 +4,7 @@ import com.xmu.entity.User;
 import com.xmu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,14 +46,24 @@ public class UserLoginController {
         return "../../login";
     }
 
-
-
-
-
-
-
-
-
+    @RequestMapping("register")
+    public String doRegister(String uaccount, String upassword,String uname,byte uage,boolean usex,String uphone, HttpServletRequest request){
+        User user = new User();
+        user.setuAccount(uaccount);
+        user.setuPassword(upassword);
+        user.setuName(uname);
+        user.setuSex(usex);
+        user.setuAge(uage);
+        user.setuPhone(uphone);
+        boolean isok= userService.save(user);
+        if(!isok) {
+            request.setAttribute("msg", "注册失败请重新注册");
+            return "register";
+        }else{
+            request.setAttribute("msg", "注册成功");
+            return "../../login";
+        }
+    }
 
 
 
