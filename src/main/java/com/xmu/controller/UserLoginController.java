@@ -48,6 +48,9 @@ public class UserLoginController {
 
     @RequestMapping("register")
     public String doRegister(String uaccount, String upassword,String uname,byte uage,boolean usex,String uphone, HttpServletRequest request){
+        boolean isres=false;
+        isres=userService.findByUAccount(uaccount);
+        if(isres){request.setAttribute("msg", "该用户名已被注册，请重新填写");return "register";}
         User user = new User();
         user.setuAccount(uaccount);
         user.setuPassword(upassword);
@@ -64,6 +67,8 @@ public class UserLoginController {
             return "../../login";
         }
     }
+
+
 
 
 
