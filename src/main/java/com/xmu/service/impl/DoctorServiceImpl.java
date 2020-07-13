@@ -3,6 +3,7 @@ package com.xmu.service.impl;
 import com.xmu.entity.Doctor;
 import com.xmu.entity.DoctorExample;
 import com.xmu.mapper.DoctorMapper;
+import com.xmu.mapper.RoomMapper;
 import com.xmu.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,13 @@ public class DoctorServiceImpl implements DoctorService {
     public List<Doctor> findByHospitalId(Long hId) {
         DoctorExample example = new DoctorExample();
         example.createCriteria().andDHidEqualTo(hId);
+        return doctorMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<Doctor> findByRoomId(Long rId) {
+        DoctorExample example = new DoctorExample();
+        example.createCriteria().andDRidEqualTo(rId);
         return doctorMapper.selectByExample(example);
     }
 }

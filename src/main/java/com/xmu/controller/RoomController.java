@@ -1,7 +1,9 @@
 package com.xmu.controller;
 
+import com.xmu.entity.Doctor;
 import com.xmu.entity.Hospital;
 import com.xmu.entity.Room;
+import com.xmu.service.DoctorService;
 import com.xmu.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,24 +24,30 @@ public class RoomController {
 
     @Autowired
     private RoomService roomService;
+    @Autowired
+    private DoctorService doctorService;
 
-    //只能查到本医院的所有诊室
+    /**
+    * 查到本医院的所有诊室
+     */
     @RequestMapping("showrooms.hp")
     public String showRooms(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getSession().getAttribute("hospital")==null){
-//            Hospital hospital = new Hospital();
-//            hospital = (Hospital)request.getSession().getAttribute("hospital");
-            List<Room> list = roomService.findByHospitalId(1L);     //hospital.gethId()
+        if(request.getSession().getAttribute("hospital")!=null){
+            Hospital hospital = new Hospital();
+            hospital = (Hospital)request.getSession().getAttribute("hospital");
+            List<Room> list = roomService.findByHospitalId(hospital.gethId());
             model.addAttribute("list",list);
             return "rooms";
         }else{
             request.setAttribute("msg","请先登录系统！");
-            request.getRequestDispatcher("login.jsp").forward(request,response);
-            return "login.jsp";
+            request.getRequestDispatcher("hospitallogin.jsp").forward(request,response);
+            return "../../index";
         }
     }
 
-    //医院编号由session获取；诊室初始人数为0
+    /**
+     * 添加诊室 ： 诊室初始人数rNum自动设为0
+     */
     @RequestMapping("addrooms.hp")
     public String addRooms(Room room, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("hospital")!=null){
@@ -52,11 +60,14 @@ public class RoomController {
             return "forward:showrooms.hp";
         }else{
             request.setAttribute("msg","请先登录系统！");
-            request.getRequestDispatcher("login.jsp").forward(request,response);
-            return "login.jsp";
+            request.getRequestDispatcher("hospitallogin.jsp").forward(request,response);
+            return "../../index";
         }
     }
 
+    /**
+     * 修改诊室 ： 只能修改 desc,address,rMax
+     */
     @RequestMapping("modifyrooms.hp")
     public String modifyRooms(Room room, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("hospital")!=null){
@@ -64,21 +75,28 @@ public class RoomController {
             return "forward:showrooms.hp";
         }else{
             request.setAttribute("msg","请先登录系统！");
-            request.getRequestDispatcher("login.jsp").forward(request,response);
-            return "login.jsp";
+            request.getRequestDispatcher("hospitallogin.jsp").forward(request,response);
+            return "../../index";
         }
     }
 
-    //删除后，诊室里的医生怎么处理
+    /**
+     * 删除诊室 ： 删除后，诊室里的医生的 rId 置为0，需要重新为这些医生分配诊室
+     */
     @RequestMapping("removerooms.hp")
     public String removeRooms(Long rId, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("hospital")!=null){
             roomService.delete(rId);
+            List<Doctor> list = doctorService.findByRoomId(rId);
+            for (Doctor doctor:list) {
+                doctor.setdRid(0L);
+                doctorService.update(doctor);
+            }
             return "forward:showrooms.hp";
         }else{
             request.setAttribute("msg","请先登录系统！");
-            request.getRequestDispatcher("login.jsp").forward(request,response);
-            return "login.jsp";
+            request.getRequestDispatcher("hospitallogin.jsp").forward(request,response);
+            return "../../index";
         }
     }
 

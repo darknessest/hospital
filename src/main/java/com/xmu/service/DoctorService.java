@@ -14,4 +14,5 @@ public interface DoctorService {
     public void update(Doctor doctor);
     public void delete(Long doctorId);
     public List<Doctor> findByHospitalId(Long hId);
+    public List<Doctor> findByRoomId(Long rId);
 }
