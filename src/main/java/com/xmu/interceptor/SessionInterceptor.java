@@ -16,7 +16,7 @@ public class SessionInterceptor implements HandlerInterceptor {
 			return true;
 		}else{
 			request.setAttribute("msg", "请先登录系统！");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
 			return false;
 		}
 	}
