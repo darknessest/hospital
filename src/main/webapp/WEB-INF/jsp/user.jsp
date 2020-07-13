@@ -20,7 +20,11 @@
 <body>
 
 <div id="wrapper">
-
+    <!--头部：页面标题栏-->
+    <jsp:include page="/part/user.header.jsp"></jsp:include>
+    <!--导航栏：页面菜单栏-->
+    <jsp:include page="/part/user.menu.jsp"></jsp:include>
+    <!--表格-->
     <div id="page-wrapper">
         <div id="page-inner">
             <div class="row">

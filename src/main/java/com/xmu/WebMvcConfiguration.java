@@ -24,7 +24,5 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter{
 //		registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**.do");
 //	}
 //
-	
-	
-	
+
 }

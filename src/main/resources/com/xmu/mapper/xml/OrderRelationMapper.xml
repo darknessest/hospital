@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmu.mapper.OrderRelationMapper">
+    <select resultType="map" id="selectOrder">
+        select orders.*, d_name, h_name, u_name
+        from orders
+                 inner join doctor on orders.o_did = doctor.d_id
+                 inner join hospital on orders.o_hid = hospital.h_id
+                 inner join user on orders.o_userid = user.u_id
+    </select>
+    <select resultType="map" id="selectByUId">
+        select orders.*, d_name, h_name, u_name
+        from orders
+                 inner join doctor on orders.o_did = doctor.d_id
+                 inner join hospital on orders.o_hid = hospital.h_id
+                 inner join user on orders.o_userid = user.u_id
+        where orders.o_userid = #{uId}
+    </select>
+    <select resultType="map" id="selectByHId">
+        select orders.*, d_name, h_name, u_name
+        from orders
+                 inner join doctor on orders.o_did = doctor.d_id
+                 inner join hospital on orders.o_hid = hospital.h_id
+                 inner join user on orders.o_userid = user.u_id
+        where orders.o_hid = #{hId}
+    </select>
+</mapper>
