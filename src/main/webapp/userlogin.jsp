@@ -41,7 +41,7 @@
 
     <div class="container">
         <form  action="toreg">
-            <button  class="btn-theme" >已有账号，去登陆</button>
+            <button  class="btn-theme" >没有账号，去注册</button>
         </form>
         <form  class="form-login" action="login" method="post">
             <h2 class="form-login-heading">医院预约管理系统|用户登陆</h2>
