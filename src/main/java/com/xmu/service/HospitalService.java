@@ -10,4 +10,7 @@ public interface HospitalService {
     int add(Hospital hospital);
     int update(Hospital hospital);
     int delete(long id);
+    boolean findByAccount(String hAccount);
+    Hospital login(String hAccount,String hPassword);
+
 }

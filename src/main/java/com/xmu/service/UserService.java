@@ -1,10 +1,9 @@
 package com.xmu.service;
 
 import com.xmu.entity.User;
+import com.xmu.entity.UserUpdate;
 
 import java.util.List;
-
-import com.xmu.entity.Admin;
 
 public interface UserService {
     public List<User> findAll();
@@ -17,7 +16,13 @@ public interface UserService {
 
     public boolean delete(long userId);
 
-    User findByUaccountAndUpassword(String uaccount,String upassword);
+    public boolean update(UserUpdate user);
+
+    User findByUnameAndPassword(String uAccount,String uPassword);
 
     public boolean findByUAccount(String uaccount);
+
+    User findByUaccountAndUpassword(String uaccount,String upassword);
+
+
 }

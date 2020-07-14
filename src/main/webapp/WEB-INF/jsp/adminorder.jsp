@@ -70,7 +70,7 @@
 													<c:if test="${order.o_status==2 }">已支付</c:if>
 													<c:if test="${order.o_status==3 }">已完成</c:if>
 													<c:if test="${order.o_status!=1&&order.o_status!=2&&order.o_status!=3 }">
-														<span style="color: red">异常</span>
+														<span style="color: #ff0000">异常</span>
 													</c:if>
 												</td>
 												<td><fmt:formatDate value="${order.o_date }" pattern="yyyy-MM-dd"/></td>

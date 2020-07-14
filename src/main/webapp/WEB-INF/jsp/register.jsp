@@ -55,8 +55,8 @@
                 <br>
                 <input datatype="SafeString" type="password"  class="form-control" placeholder="请输入用户密码" name="upassword"  msg="密码不符合安全规则" style="" required>
                 <br>
-<%--                <input  datatype="Repeat"  type="password"  class="form-control" placeholder="请确认密码"  to="Password" msg="两次输入的密码不一致"required>--%>
-<%--                <br>--%>
+                <%--                <input  datatype="Repeat"  type="password"  class="form-control" placeholder="请确认密码"  to="Password" msg="两次输入的密码不一致"required>--%>
+                <%--                <br>--%>
                 <input datatype="Chinese" class="form-control" placeholder="请输入真实姓名" name="uname"   msg="真实姓名只允许中文"  style="" required>
                 <br>
                 <input  datatype="Range"  class="form-control" placeholder="请输入年龄" name="uage"   msg="年龄必须在12~110之间" min="12" max="110"  operator="GreaterThanEqual" style="" required>

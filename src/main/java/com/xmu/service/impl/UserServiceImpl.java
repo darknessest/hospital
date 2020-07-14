@@ -2,6 +2,7 @@ package com.xmu.service.impl;
 
 import com.xmu.entity.User;
 import com.xmu.entity.UserExample;
+import com.xmu.entity.UserUpdate;
 import com.xmu.mapper.UserMapper;
 import com.xmu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,6 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-
     @Autowired
     private UserMapper userMapper;
 
@@ -46,9 +45,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUaccountAndUpassword(String uaccount, String upassword) {
+    public boolean update(UserUpdate userUpdate) {
+        User user = userMapper.selectByPrimaryKey(userUpdate.getuId());
+        user.setuPhone(userUpdate.getuPhone());
+        user.setuPassword(userUpdate.getuPassword());
+
+        int i = userMapper.updateByPrimaryKeySelective(user);
+        return i == 1;
+    }
+
+    @Override
+    public User findByUnameAndPassword(String uAccount, String uPassword) {
         UserExample ae = new UserExample();
-        ae.createCriteria().andUAccountEqualTo(uaccount).andUPasswordEqualTo(upassword);
+        ae.createCriteria().andUAccountEqualTo(uAccount).andUPasswordEqualTo(uPassword);
         List<User> users = userMapper.selectByExample(ae);
         if(users.size()!=1){
             return null;
@@ -70,6 +79,15 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
-
+    @Override
+    public User findByUaccountAndUpassword(String uaccount, String upassword) {
+        UserExample ae = new UserExample();
+        ae.createCriteria().andUAccountEqualTo(uaccount).andUPasswordEqualTo(upassword);
+        List<User> users = userMapper.selectByExample(ae);
+        if(users.size()!=1){
+            return null;
+        }else{
+            return users.get(0);
+        }
+    }
 }

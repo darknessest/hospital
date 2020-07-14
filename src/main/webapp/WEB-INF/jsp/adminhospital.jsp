@@ -140,8 +140,16 @@
 			//$(".form-control").val("");
 			$("#editForm").get(0).reset();
 			$("#editForm").attr("action","<%=basePath%>addhospital.ad");
+			$("#hName").attr("required","true");
+			$("#hAccount").attr("required","true");
+			$("#hPassword").attr("required","true");
+			$("#hAccount").removeAttr("disabled");
 		}else{
 			$("#editForm").attr("action","<%=basePath%>updatehospital.ad");
+			$("#hName").removeAttr("required");
+			$("#hAccount").removeAttr("required");
+			$("#hPassword").removeAttr("required");
+			$("#hAccount").attr("disabled","true");
 			var hospitalInfo = obj.parentNode.parentNode.childNodes;
 			console.log(hospitalInfo);
 			$("#hId").val(hospitalInfo[1].innerHTML);
@@ -155,5 +163,20 @@
 			location.href="<%=basePath%>deletehospital.ad?hId="+hId;
 		}
 	}
+
+	<%--function checkAccount(){--%>
+	<%--	hAccount=$("#hAccount").val();--%>
+	<%--	console.log(hAccount);--%>
+	<%--	$.get("<%=basePath%>checkaccount.ad?hAccount="+hAccount,function(data){--%>
+	<%--		check=$("#check")--%>
+	<%--		if(data.accountExist){--%>
+	<%--			check.css("clolr","red");--%>
+	<%--			check.html("账号已存在");--%>
+	<%--		}else{--%>
+	<%--			check.css("color","green");--%>
+	<%--			check.html("账号可用");--%>
+	<%--		}--%>
+	<%--	},"json");--%>
+	<%--}--%>
 </script>
 </html>

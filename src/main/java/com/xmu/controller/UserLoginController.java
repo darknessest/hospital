@@ -2,6 +2,7 @@ package com.xmu.controller;
 
 import com.xmu.entity.User;
 import com.xmu.service.UserService;
+import com.xmu.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +22,13 @@ public class UserLoginController {
 
     @RequestMapping("login")
     public String doLogin(String uaccount, String upassword, HttpServletRequest request){
-        User user = userService.findByUaccountAndUpassword(uaccount, upassword);
+        User user = userService.findByUaccountAndUpassword(uaccount, MD5Util.crypt(upassword));
         if(user==null){
             request.setAttribute("msg", "用户名或密码有误！请重新输入");
             return "../../userlogin";
         }else{
-            request.getSession().setAttribute("admin", user);
-            return "forward:showorder.do";
+            request.getSession().setAttribute("user", user);
+            return "forward:showorder.us";
 
         }
     }
@@ -56,7 +57,7 @@ public class UserLoginController {
         if(isres){request.setAttribute("msg", "该用户名已被注册，请重新填写");return "register";}
         User user = new User();
         user.setuAccount(uaccount);
-        user.setuPassword(upassword);
+        user.setuPassword(MD5Util.crypt(upassword));
         user.setuName(uname);
         user.setuSex(usex);
         user.setuAge(uage);
