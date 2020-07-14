@@ -1,12 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>CareMed</title>
+    <title>医院预约</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="CareMed demo project">
@@ -48,8 +48,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <ul>
                                     <li><a href="index.jsp">Home</a></li>
                                     <li><a href="index.jsp">About us</a></li>
-                                    <li><a href="index.jsp">用户登录</a></li>
-                                    <li><a href="index.jsp">医院登录</a></li>
+                                    <li><a href="userlogin.jsp">用户登录</a></li>
+                                    <li><a href="hospitallogin.jsp">医院登录</a></li>
                                     <li><a href="adminlogin.jsp">管理员登录</a></li>
                                 </ul>
                             </nav>
@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="logo_content d-flex flex-column align-items-start justify-content-center">
                                     <div class="logo_line"></div>
                                     <div class="logo d-flex flex-row align-items-center justify-content-center">
-                                        <div class="logo_text">Care<span>Med</span></div>
+                                        <div class="logo_text">医院<span>预约</span></div>
                                         <div class="logo_box">+</div>
                                     </div>
                                     <div class="logo_sub">Health Care Center</div>
@@ -91,11 +91,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="menu_inner menu_mm">
             <div class="menu menu_mm">
                 <ul class="menu_list menu_mm">
-                    <li class="menu_item menu_mm"><a href="adminlogin.jsp">Home</a></li>
-                    <li class="menu_item menu_mm"><a href="about.html">About us</a></li>
-                    <li class="menu_item menu_mm"><a href="index.jsp">Services</a></li>
-                    <li class="menu_item menu_mm"><a href="news.html">News</a></li>
-                    <li class="menu_item menu_mm"><a href="contact.html">Contact</a></li>
+                    <li class="menu_item menu_mm"><a href="index.jsp">Home</a></li>
+                    <li class="menu_item menu_mm"><a href="index.jsp">About us</a></li>
+                    <li class="menu_item menu_mm"><a href="userlogin.jsp">用户登录</a></li>
+                    <li class="menu_item menu_mm"><a href="hospitallogin.jsp">医院登录</a></li>
+                    <li class="menu_item menu_mm"><a href="adminlogin.jsp">管理员登录</a></li>
                 </ul>
             </div>
             <div class="menu_extra">
@@ -112,65 +112,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!-- Slider Item -->
                 <div class="owl-item">
                     <div class="home_slider_background" style="background-image:url(images/home_background_1.jpg)"></div>
-<%--                    <div class="home_content">--%>
-<%--                        <div class="container">--%>
-<%--                            <div class="row">--%>
-<%--                                <div class="col">--%>
-<%--                                    <div class="home_content_inner">--%>
-<%--                                        <div class="home_title"><h1>Medicine made with care</h1></div>--%>
-<%--                                        <div class="home_text">--%>
-<%--                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamcorper id. Quisque at erat eu.</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="button home_button">--%>
-<%--                                            <a href="#">read more</a>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="home_content">--%>
+                    <%--                        <div class="container">--%>
+                    <%--                            <div class="row">--%>
+                    <%--                                <div class="col">--%>
+                    <%--                                    <div class="home_content_inner">--%>
+                    <%--                                        <div class="home_title"><h1>Medicine made with care</h1></div>--%>
+                    <%--                                        <div class="home_text">--%>
+                    <%--                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamcorper id. Quisque at erat eu.</p>--%>
+                    <%--                                        </div>--%>
+                    <%--                                        <div class="button home_button">--%>
+                    <%--                                            <a href="#">read more</a>--%>
+                    <%--                                        </div>--%>
+                    <%--                                    </div>--%>
+                    <%--                                </div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
                 </div>
                 <!-- Slider Item -->
                 <div class="owl-item">
                     <div class="home_slider_background" style="background-image:url(images/home_background_1.jpg)"></div>
-<%--                    <div class="home_content">--%>
-<%--                        <div class="container">--%>
-<%--                            <div class="row">--%>
-<%--                                <div class="col">--%>
-<%--                                    <div class="home_content_inner">--%>
-<%--                                        <div class="home_title"><h1>Medicine made with care</h1></div>--%>
-<%--                                        <div class="home_text">--%>
-<%--                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamcorper id. Quisque at erat eu.</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="button home_button">--%>
-<%--                                            <a href="#">read more</a>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="home_content">--%>
+                    <%--                        <div class="container">--%>
+                    <%--                            <div class="row">--%>
+                    <%--                                <div class="col">--%>
+                    <%--                                    <div class="home_content_inner">--%>
+                    <%--                                        <div class="home_title"><h1>Medicine made with care</h1></div>--%>
+                    <%--                                        <div class="home_text">--%>
+                    <%--                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamcorper id. Quisque at erat eu.</p>--%>
+                    <%--                                        </div>--%>
+                    <%--                                        <div class="button home_button">--%>
+                    <%--                                            <a href="#">read more</a>--%>
+                    <%--                                        </div>--%>
+                    <%--                                    </div>--%>
+                    <%--                                </div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
                 </div>
                 <!-- Slider Item -->
                 <div class="owl-item">
                     <div class="home_slider_background" style="background-image:url(images/home_background_1.jpg)"></div>
-<%--                    <div class="home_content">--%>
-<%--                        <div class="container">--%>
-<%--                            <div class="row">--%>
-<%--                                <div class="col">--%>
-<%--                                    <div class="home_content_inner">--%>
-<%--                                        <div class="home_title"><h1>Medicine made with care</h1></div>--%>
-<%--                                        <div class="home_text">--%>
-<%--                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamcorper id. Quisque at erat eu.</p>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="button home_button">--%>
-<%--                                            <a href="#">read more</a>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="home_content">--%>
+                    <%--                        <div class="container">--%>
+                    <%--                            <div class="row">--%>
+                    <%--                                <div class="col">--%>
+                    <%--                                    <div class="home_content_inner">--%>
+                    <%--                                        <div class="home_title"><h1>Medicine made with care</h1></div>--%>
+                    <%--                                        <div class="home_text">--%>
+                    <%--                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamcorper id. Quisque at erat eu.</p>--%>
+                    <%--                                        </div>--%>
+                    <%--                                        <div class="button home_button">--%>
+                    <%--                                            <a href="#">read more</a>--%>
+                    <%--                                        </div>--%>
+                    <%--                                    </div>--%>
+                    <%--                                </div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
                 </div>
             </div>
             <!-- Slider Progress -->
@@ -413,7 +413,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <a href="#" class="d-flex flex-column align-items-center justify-content-center">
                                     <div class="logo_content">
                                         <div class="logo d-flex flex-row align-items-center justify-content-center">
-                                            <div class="logo_text">Care<span>Med</span></div>
+                                            <div class="logo_text">医院<span>预约</span></div>
                                             <div class="logo_box">+</div>
                                         </div>
                                         <div class="logo_sub">Health Care Center</div>

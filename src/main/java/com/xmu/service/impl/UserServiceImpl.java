@@ -1,6 +1,8 @@
 package com.xmu.service.impl;
 
 import com.xmu.entity.User;
+import com.xmu.entity.UserExample;
+import com.xmu.entity.UserUpdate;
 import com.xmu.mapper.UserMapper;
 import com.xmu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +42,52 @@ public class UserServiceImpl implements UserService {
     public boolean delete(long userId) {
         int i = userMapper.deleteByPrimaryKey(userId);
         return i == 1;
+    }
+
+    @Override
+    public boolean update(UserUpdate userUpdate) {
+        User user = userMapper.selectByPrimaryKey(userUpdate.getuId());
+        user.setuPhone(userUpdate.getuPhone());
+        user.setuPassword(userUpdate.getuPassword());
+
+        int i = userMapper.updateByPrimaryKeySelective(user);
+        return i == 1;
+    }
+
+    @Override
+    public User findByUnameAndPassword(String uAccount, String uPassword) {
+        UserExample ae = new UserExample();
+        ae.createCriteria().andUAccountEqualTo(uAccount).andUPasswordEqualTo(uPassword);
+        List<User> users = userMapper.selectByExample(ae);
+        if(users.size()!=1){
+            return null;
+        }else{
+            return users.get(0);
+        }
+    }
+
+    @Override
+    public boolean findByUAccount(String uaccount){
+        UserExample ae = new UserExample();
+        ae.createCriteria().andUAccountEqualTo(uaccount);
+        List<User> users = userMapper.selectByExample(ae);
+        if(users.size()!=1){
+            return false;//没有
+        }else{
+            return true;//有
+        }
+
+    }
+
+    @Override
+    public User findByUaccountAndUpassword(String uaccount, String upassword) {
+        UserExample ae = new UserExample();
+        ae.createCriteria().andUAccountEqualTo(uaccount).andUPasswordEqualTo(upassword);
+        List<User> users = userMapper.selectByExample(ae);
+        if(users.size()!=1){
+            return null;
+        }else{
+            return users.get(0);
+        }
     }
 }

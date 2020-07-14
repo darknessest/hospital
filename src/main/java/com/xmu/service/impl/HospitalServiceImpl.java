@@ -1,6 +1,7 @@
 package com.xmu.service.impl;
 
 import com.xmu.entity.Hospital;
+import com.xmu.entity.HospitalExample;
 import com.xmu.mapper.HospitalMapper;
 import com.xmu.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,25 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public int delete(long id) {
         return hospitalMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public boolean findByAccount(String hAccount) {
+        HospitalExample he=new HospitalExample();
+        he.createCriteria().andHAccountEqualTo(hAccount);
+        List<Hospital>list=hospitalMapper.selectByExample(he);
+        return list.size()>0?true:false;
+    }
+
+    @Override
+    public Hospital login(String hAccount, String hPassword) {
+        HospitalExample he = new HospitalExample();
+        he.createCriteria().andHAccountEqualTo(hAccount).andHPasswordEqualTo(hPassword);
+        List<Hospital> list = hospitalMapper.selectByExample(he);
+        if (list.size()==0){
+            return null;
+        }else{
+            return list.get(0);
+        }
     }
 }

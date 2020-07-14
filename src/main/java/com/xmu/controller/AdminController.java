@@ -11,6 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -28,7 +29,7 @@ public class AdminController {
     private HospitalService hospitalService;
 
 
-    @RequestMapping("login")
+    @RequestMapping("adminlogin")
     public String doLogin(String aAccount, String aPassword, HttpServletRequest request){
         Admin admin = adminService.login(aAccount, MD5Util.crypt(aPassword));
         if(admin==null){
@@ -41,7 +42,7 @@ public class AdminController {
         }
     }
 
-    @RequestMapping("logout")
+    @RequestMapping("adminlogout")
     public String logout(HttpServletRequest request){
         request.setAttribute("msg", "您已安全退出系统！");
         request.getSession().invalidate();
@@ -79,11 +80,12 @@ public class AdminController {
         return "adminhospital";
     }
     @RequestMapping("addhospital.ad")
-    public String addHospital(Hospital hospital){
-        if(!hospital.gethPassword().equals("")){
-            hospital.sethPassword(MD5Util.crypt(hospital.gethPassword()));
+    public String addHospital(Hospital hospital,HttpServletRequest request){
+        boolean isExist=hospitalService.findByAccount(hospital.gethAccount());
+        hospital.sethPassword(MD5Util.crypt(hospital.gethPassword()));
+        if (!isExist){
+            hospitalService.add(hospital);
         }
-        hospitalService.add(hospital);
         return "forward:showhospital.ad";
     }
     @RequestMapping("updatehospital.ad")
@@ -101,6 +103,19 @@ public class AdminController {
         hospitalService.delete(hId);
         return "forward:showhospital.ad";
     }
+
+//    @RequestMapping("checkaccount.ad")
+//    @ResponseBody
+//    public Map<String,Object> checkAccount(String hAccount){
+//        boolean isExist=hospitalService.findByAccount(hAccount);
+//        Map<String,Object>retMsg=null;
+//        if(isExist){
+//            retMsg.put("accountExist","true");
+//        }else{
+//            retMsg.put("accountExist","false");
+//        }
+//        return retMsg;
+//    }
 
 
 //    订单部分管理===================================================================================

@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
 	  <div id="login-page">
 	  	<div class="container">
-		      <form class="form-login" action="login" method="post">
+		      <form class="form-login" action="adminlogin" method="post">
 		        <h2 class="form-login-heading">医院预约后台管理系统</h2>
 		        <div class="login-wrap"><!-- required 必填， autofocus 光标锁定-->
 		            <input type="text" class="form-control" placeholder="请输入管理员名" name="aAccount" required autofocus>

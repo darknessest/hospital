@@ -33,7 +33,7 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public List<Map<String, Object>> findByHospitalId(long hId) {
-        return orderRelationMapper.selectByUId(hId);
+        return orderRelationMapper.selectByHId(hId);
     }
 
     @Override

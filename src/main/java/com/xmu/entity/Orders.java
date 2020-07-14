@@ -1,5 +1,7 @@
 package com.xmu.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -58,6 +60,7 @@ public class Orders {
      *
      * @mbggenerated Fri Jul 10 15:53:47 CST 2020
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date oDate;
 
     /**
