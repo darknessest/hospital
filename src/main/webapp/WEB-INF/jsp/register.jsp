@@ -32,10 +32,12 @@
             alert(msg);
         }
 
+        $("#Submit").attr("disabled","true");
     </script>
 </head>
 
 <body>
+
 <div id="login-page">
 
     <div class="container">
@@ -65,12 +67,15 @@
                 <br>
                 <input class="btn btn-theme btn-block" onclick="Validator.Validate(document.getElementById('reg'),3)" value="检验信息" type="button">
                 <br>
-                <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i>注册</button>
-                <hr>
+                <button class="btn btn-theme btn-block" type="submit" id="Subreg"><i class="fa fa-lock"></i>注册</button>
 
+
+                <hr>
             </div>
 
         </form>
+
+
 
 
 
@@ -88,10 +93,11 @@
 <script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
 <script type="text/javascript">
     $.backstretch("images/img_bg_1.jpg", {speed: 0});
+    $("#Subreg").attr("disabled","disabled");
 </script>
 
-
 <script>
+
     Validator = {
         Require : /.+/,
         Email : /^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-]+\.)+([a-zA-Z0-9_-]{1,})$/,
@@ -174,6 +180,7 @@
                 }
             }
             if(this.ErrorMessage.length > 1){
+
                 mode = mode || 1;
                 var errCount = this.ErrorItem.length;
                 switch(mode){
@@ -203,6 +210,7 @@
                 }
                 return false;
             }
+            $("#Subreg").attr("disabled",false);
             return true;
         },
         limit : function(len,min, max){
