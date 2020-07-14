@@ -51,6 +51,7 @@
                                     <li><a href="userlogin.jsp">用户登录</a></li>
                                     <li><a href="hospitallogin.jsp">医院登录</a></li>
                                     <li><a href="adminlogin.jsp">管理员登录</a></li>
+                                    <li><a href="register.jsp">用户注册</a></li>
                                 </ul>
                             </nav>
                             <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
@@ -96,6 +97,7 @@
                     <li class="menu_item menu_mm"><a href="userlogin.jsp">用户登录</a></li>
                     <li class="menu_item menu_mm"><a href="hospitallogin.jsp">医院登录</a></li>
                     <li class="menu_item menu_mm"><a href="adminlogin.jsp">管理员登录</a></li>
+                    <li class="menu_item menu_mm"><a href="register.jsp">用户注册</a></li>
                 </ul>
             </div>
             <div class="menu_extra">

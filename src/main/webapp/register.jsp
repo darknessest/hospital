@@ -26,6 +26,10 @@
     <link href="css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
+    <!-- Copy Head from index.jsp-->
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/login_head_styles.css">
+
     <script type="text/javascript">
         var msg = '${msg}';
         if(msg!=""&&msg!=undefined){
@@ -37,26 +41,63 @@
 </head>
 
 <body>
+<header class="header trans_200">
+    <!-- Header Content -->
+    <div class="header_container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                        <nav class="main_nav ml-auto">
+                            <ul>
+                                <li><a href="index.jsp">Home</a></li>
+                                <li><a href="index.jsp">About us</a></li>
+                                <li><a href="userlogin.jsp">用户登录</a></li>
+                                <li><a href="hospitallogin.jsp">医院登录</a></li>
+                                <li><a href="adminlogin.jsp">管理员登录</a></li>
+                                <li><a href="register.jsp">用户注册</a></li>
+                            </ul>
+                        </nav>
+                        <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Logo -->
+    <div class="logo_container_outer">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="logo_container">
+                        <a href="#">
+                            <div class="logo_content d-flex flex-column align-items-start justify-content-center">
+                                <div class="logo_line"></div>
+                                <div class="logo d-flex flex-row align-items-center justify-content-center">
+                                    <div class="logo_text">医院<span>预约</span></div>
+                                    <div class="logo_box">+</div>
+                                </div>
+                                <div class="logo_sub">Health Care Center</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
 <div id="login-page">
-
+    <br><br>
     <div class="container">
-        <br>
-
-        <form  action="tologin">
-            <button  class="btn-theme" >已有账号，去登陆</button>
-        </form>
-
 
         <form class="form-login" id="reg" action="register" method="post">
-            <h2 class="form-login-heading">医院预约管理系统|用户注册</h2>
+            <h2 class="form-login-heading">医院预约系统|用户注册</h2>
             <div class="login-wrap"><!-- required 必填， autofocus 光标锁定-->
                 <input type="text" class="form-control" placeholder="请输入用户名" name="uaccount" msg="用户名不合规范" style="" required autofocus>
                 <br>
                 <input datatype="SafeString" type="password"  class="form-control" placeholder="请输入用户密码" name="upassword"  msg="密码不符合安全规则" style="" required>
                 <br>
-                <%--                <input  datatype="Repeat"  type="password"  class="form-control" placeholder="请确认密码"  to="Password" msg="两次输入的密码不一致"required>--%>
-                <%--                <br>--%>
                 <input datatype="Chinese" class="form-control" placeholder="请输入真实姓名" name="uname"   msg="真实姓名只允许中文"  style="" required>
                 <br>
                 <input  datatype="Range"  class="form-control" placeholder="请输入年龄" name="uage"   msg="年龄必须在12~110之间" min="12" max="110"  operator="GreaterThanEqual" style="" required>
@@ -74,13 +115,6 @@
             </div>
 
         </form>
-
-
-
-
-
-
-
     </div>
 </div>
 
@@ -92,7 +126,7 @@
 <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
 <script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
 <script type="text/javascript">
-    $.backstretch("images/img_bg_1.jpg", {speed: 0});
+    $.backstretch("images/home_background_11.jpg", {speed: 500});
     $("#Subreg").attr("disabled","disabled");
 </script>
 
