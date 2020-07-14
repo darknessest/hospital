@@ -144,9 +144,9 @@
 </body>
 <script type="text/javascript">
     function editInfo(obj) {
-        $("#editForm").attr("action", "<%=basePath%>edit-user");
+        $("#editForm").attr("action", "<%=basePath%>editinfo.us");
         var orderInfo = obj.parentNode.parentNode.childNodes;
-        // console.log(orderInfo);
+        console.log(orderInfo);
         $("#uId").val(orderInfo[1].innerHTML);
         $("#uPassword").val("");
         $("#uPhone").val(orderInfo[7].innerText);

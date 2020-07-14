@@ -62,6 +62,7 @@ public class DoctorController {
                     Byte bt = (byte)(aRoom.getrNum()+1);
                     aRoom.setrNum(bt);
                     roomService.update(aRoom);
+                    doctor.setdId(null);
                     doctorService.save(doctor);
                     return "forward:showdoctors.hp";
                 }

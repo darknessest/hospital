@@ -198,9 +198,10 @@
                                                 </td>
 
                                                 <td>${order.o_price }</td>
-                                                <td><a id="pay" onclick="getPaymentLink(${order.o_id})">
+                                                <td><c:if test="${order.o_status==1 }"><a id="pay" onclick="getPaymentLink(${order.o_id})">
                                                     <span class="glyphicon glyphicon-credit-card"></span>
-                                                </a></td>
+                                                </a></c:if>
+                                                </td>
                                                 <td><c:if test="${order.o_status==1 }"><a id="cancel" href="#"
                                                                                           onclick="doDelete(${order.o_id})">
                                                     <span class="glyphicon glyphicon-remove"></span>
