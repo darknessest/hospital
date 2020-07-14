@@ -102,7 +102,7 @@
                 <br>
                 <input  datatype="Range"  class="form-control" placeholder="请输入年龄" name="uage"   msg="年龄必须在12~110之间" min="12" max="110"  operator="GreaterThanEqual" style="" required>
                 <br>
-                <input datatype="Sex"  class="form-control" placeholder="请输入性别(男性输入1 女性输入0）" name="usex" msg="性别不合规范" style="" required="true">
+                <input datatype="Sex"  class="form-control" placeholder="请输入性别(男性输入1 女性输入0）" name="usex" msg="性别不合规范" style="" required>
                 <br>
                 <input datatype="Phone" class="form-control" name="uphone"  msg="手机号码不正确" placeholder="请输入联系电话" style="" required >
                 <br>
