@@ -29,7 +29,7 @@ public class HospitalController {
     @RequestMapping(value = "/helloWorld", method = RequestMethod.POST)
     public String helloWorld() {
 //        model.addAttribute("message", "Hello World!");
-        System.out.println("FROM HELLO WORLD");
+        System.out.println("FROM HELLO HOSPITAL CONTROLLER");
         return "helloWorld";
     }
 }

@@ -41,38 +41,49 @@
                         </div>
 
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover"
-                                       id="dataTables-example">
+                            <div class="form-group">
+                                <table class="table" style="font: '黑体';">
                                     <thead>
                                     <tr>
-                                        <th>id</th>
-                                        <th>acc</th>
-                                        <th>pass</th>
-                                        <th>name</th>
-                                        <th>age</th>
-                                        <th>sex</th>
-                                        <th>phone</th>
+                                        <th>用户信息：</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>${user.uId }</td>
-                                        <td>${user.uAccount }</td>
-                                        <td>${user.uPassword }</td>
+                                        <td><b>姓名</b></td>
                                         <td>${user.uName }</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><b>年龄</b></td>
                                         <td>${user.uAge }</td>
-                                        <td>${user.uSex }</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>性别</b></td>
+                                        <td>
+                                            <c:if test="${user.uSex==true }">男</c:if>
+                                            <c:if test="${user.uSex==false }">女</c:if>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><b>电话号码</b></td>
                                         <td>${user.uPhone }</td>
 
-                                        <td><a id="edit" href="#" data-toggle="modal" data-target="#myModal"
-                                               onclick="editInfo(this)">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                        </a></td>
-
+                                    </tr>
                                     </tbody>
                                 </table>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        <a id="edit" href="#" data-toggle="modal" data-target="#myModal"
+                                           onclick="editInfo(this)">更改信息
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                    </button>
+                                </div>
                             </div>
+                            </form>
                         </div>
                     </div>
 
@@ -137,8 +148,8 @@
         var orderInfo = obj.parentNode.parentNode.childNodes;
         // console.log(orderInfo);
         $("#uId").val(orderInfo[1].innerHTML);
-        $("#uPassword").val(orderInfo[5].innerHTML);
-        $("#uPhone").val(orderInfo[13].innerText);
+        $("#uPassword").val("");
+        $("#uPhone").val(orderInfo[7].innerText);
     }
 
 </script>

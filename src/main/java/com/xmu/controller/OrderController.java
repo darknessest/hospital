@@ -61,11 +61,4 @@ public class OrderController {
         return "userorders";
     }
 
-    @RequestMapping(value = "/ajax-cancel", method = RequestMethod.POST)
-    public @ResponseBody
-    String postEmployeeData(@RequestBody Integer id) {
-        System.out.println("FROM AJAX CANCEL ORDER" + id);
-
-        return "";
-    }
 }

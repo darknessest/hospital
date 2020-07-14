@@ -2,21 +2,11 @@ package com.xmu.controller;
 
 import com.xmu.entity.User;
 import com.xmu.entity.UserUpdate;
-import com.xmu.service.OrdersService;
 import com.xmu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -26,21 +16,17 @@ public class UserController {
 
 
     @RequestMapping("/user")
-    public String findUser(Model model) {
+    public String showUser(Model model) {
         // TODO: add login part
         // get id from logged in user info
         User user = userService.findByUserId(1);
+
+        user.setuPassword("");  // hiding password
 
         model.addAttribute("user", user);
         return "user";
     }
 
-//    @RequestMapping("/users")
-//    public String findAll(Model model) {
-//        List<User> user = userService.findAll();
-//        model.addAttribute("users", user);
-//        return "user";
-//    }
 
     @RequestMapping("/edit-user")
     public String editUser(UserUpdate updateUser) {
