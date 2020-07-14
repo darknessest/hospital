@@ -4,6 +4,7 @@ import com.xmu.entity.User;
 import com.xmu.entity.UserUpdate;
 import com.xmu.service.OrdersService;
 import com.xmu.service.UserService;
+import com.xmu.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,8 +46,11 @@ public class UserController {
 
     @RequestMapping("editinfo.us")
     public String editUser(UserUpdate updateUser) {
+        if(!updateUser.getuPassword().equals("")){
+            updateUser.setuPassword(MD5Util.crypt(updateUser.getuPassword()));
+        }else updateUser.setuPassword(null);
         userService.update(updateUser);
-        return "redirect:/user";
+        return "redirect:/showinfo.us";
     }
 
 

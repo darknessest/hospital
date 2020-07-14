@@ -42,7 +42,7 @@ public class UserLoginController {
 
     @RequestMapping("toreg")
     public String toReg(HttpServletRequest request){
-        return "register";
+        return "../../register";
     }
 
     @RequestMapping("tologin")
@@ -54,7 +54,7 @@ public class UserLoginController {
     public String doRegister(String uaccount, String upassword,String uname,byte uage,boolean usex,String uphone, HttpServletRequest request){
         boolean isres=false;
         isres=userService.findByUAccount(uaccount);
-        if(isres){request.setAttribute("msg", "该用户名已被注册，请重新填写");return "register";}
+        if(isres){request.setAttribute("msg", "该用户名已被注册，请重新填写");return "../../register";}
         User user = new User();
         user.setuAccount(uaccount);
         user.setuPassword(MD5Util.crypt(upassword));
@@ -65,7 +65,7 @@ public class UserLoginController {
         boolean isok= userService.save(user);
         if(!isok) {
             request.setAttribute("msg", "注册失败请重新注册");
-            return "register";
+            return "../../register";
         }else{
             request.setAttribute("msg", "注册成功");
             return "../../userlogin";
