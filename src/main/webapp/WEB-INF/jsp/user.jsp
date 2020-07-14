@@ -53,7 +53,6 @@
                                     <tr>
                                         <td><b>姓名</b></td>
                                         <td>${user.uName }</td>
-
                                     </tr>
                                     <tr>
                                         <td><b>年龄</b></td>
@@ -109,12 +108,12 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td><b>Phone：</b></td>
+                                                    <td><b>电话号码：</b></td>
                                                     <td><input type="text" id="uPhone" name="uPhone"
                                                                maxlength="15" class="form-control"/></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>Password：</b></td>
+                                                    <td><b>密码：</b></td>
                                                     <td><input type="text" id="uPassword" name="uPassword"
                                                                maxlength="20" class="form-control"/></td>
                                                 </tr>
@@ -139,18 +138,24 @@
         </div>
     </div>
 </div>
-<%--TODO: change toolbar--%>
+
 <jsp:include page="/part/manager.js.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
     function editInfo(obj) {
         $("#editForm").attr("action", "<%=basePath%>edit-user");
-        var orderInfo = obj.parentNode.parentNode.childNodes;
-        // console.log(orderInfo);
-        $("#uId").val(orderInfo[1].innerHTML);
-        $("#uPassword").val("");
-        $("#uPhone").val(orderInfo[7].innerText);
+        var phone = getElementByXpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[4]/td[2]").innerText;
+        var password = getElementByXpath("//input[@id='uPassword']").innerText
+        console.log();
+        $("#uId").val(${user.uId });
+        $("#uPassword").val(password);
+        $("#uPhone").val(phone);
     }
+
+    function getElementByXpath(path) {
+        return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    }
+
 
 </script>
 </html>

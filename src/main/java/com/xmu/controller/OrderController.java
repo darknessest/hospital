@@ -19,8 +19,8 @@ public class OrderController {
     @Autowired
     private OrdersService ordersService;
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     @RequestMapping("/user-orders")
     public String showOrder(Model model) {
@@ -28,8 +28,8 @@ public class OrderController {
         // get id from logged in user info
 
         List<Map<String, Object>> list = ordersService.findByUserId(71);
-        String name = userService.findByUserId(71).getuName();
-        model.addAttribute("name", name);
+//        String name = userService.findByUserId(71).getuName();
+//        model.addAttribute("name", name);
         model.addAttribute("list", list);
         return "userorders";
     }

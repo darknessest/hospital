@@ -30,7 +30,8 @@ public class UserController {
 
     @RequestMapping("/edit-user")
     public String editUser(UserUpdate updateUser) {
-        userService.update(updateUser);
+        System.out.println(updateUser.getuId() + updateUser.getuPassword() + updateUser.getuPhone());
+//        userService.update(updateUser);
         return "redirect:/user";
     }
 
