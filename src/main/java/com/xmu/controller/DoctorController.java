@@ -76,13 +76,24 @@ public class DoctorController {
     }
 
     /**
-     *  修改医生信息
+     *  修改医生信息 : 先判断诊室的合法性 ； 原诊室的rNum-1 , 新诊室的rNum+1
      */
     @RequestMapping("modifydoctors.hp")
     public String modifyDoctors(Doctor doctor, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("hospital")!=null) {
             Hospital hospital = new Hospital();
             hospital = (Hospital)request.getSession().getAttribute("hospital");
+            Doctor doctor1 = doctorService.findByDoctorId(doctor.getdId());
+            Long rId1 = doctor1.getdRid();
+            List<Room> listRoom1 = roomService.findByHospitalId(hospital.gethId());
+            for (Room room1:listRoom1) {
+                if(Objects.equals(room1.getrId(), rId1)){
+                    Byte bt1 = (byte)(room1.getrNum()-1);
+                    room1.setrNum(bt1);
+                    roomService.update(room1);
+                }
+            }
+
             Long rId = doctor.getdRid();
             List<Room> listRooms = roomService.findByHospitalId(hospital.gethId());
             for (Room aRoom : listRooms) {
